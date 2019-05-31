@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+            <counter></counter>
+            <counter></counter>
+            <counter></counter>
+    </div>
+    <template id="temp2">
+        <div>
+            <input type="button" value="+1" @click="add">
+            <h3>{{count}}</h3>
+        </div>
+    </template>
+
+
+    <!-- <template id="temp1">
+            <div>
+                <h2>你好棒！{{msg}}</h2>
+                <h4>你怎么这么好看！</h4>
+            </div>
+        </template> -->
+    <script>
+        // var dataObj ={count:0}
+        Vue.component('counter',{
+            template:'#temp2',
+            data:function(){
+                return {count:0}
+            },
+            methods:{
+                add(){
+                    this.count++;
+                }
+            }
+        })
+
+
+        // Vue.component('mycom3',{
+        //     template:'#temp1',
+        //     data:function(){
+        //         return {
+        //             msg:'这个这个这个 。。。 emmmm'
+        //         } 
+        //     }
+        // })
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{}
+        });
+    </script>
+</body>

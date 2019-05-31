@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+    <!-- vue-resource依赖于Vue，所以先后顺序要注意 -->
+    <script src="./lib/vue-resource-1.3.4.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="get请求" @click="getInfo">
+        <input type="button" value="post请求" @click="postInfo">
+        <input type="button" value="jsonp请求" @click="jsonpInfo">
+    </div>
+    <script>
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{
+                getInfo(){
+                    this.$http.get('http://127.0.0.1:5500/%E5%93%81%E7%89%8C%E5%88%97%E8%A1%A8%E6%A1%88%E4%BE%8B.html',{credentials:true}).then(result => {
+                        console.log(result)
+                    })
+                },
+                postInfo(){
+                    //手动发起的post请求默认没有表单格式，有的服务器处理不了
+                    this.$http.post('http://127.0.0.1:5500/%E5%93%81%E7%89%8C%E5%88%97%E8%A1%A8%E6%A1%88%E4%BE%8B.html',{},{ emulateJSON:true }).then(result => {
+                        console.log(result)
+                    })
+                },
+                jsonpInfo() { // 发起JSONP 请求
+                this.$http.jsonp('http://127.0.0.1:5500/%E5%93%81%E7%89%8C%E5%88%97%E8%A1%A8%E6%A1%88%E4%BE%8B.html').then(result => {
+                    console.log(result.body)
+                })
+                }
+
+           }
+        });
+    </script>
+</body>

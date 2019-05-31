@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="修改" @click="msg='okk'">{{msg}}
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                msg:'ok'
+            },
+            methods:{
+                show(){
+                    console.log('执行了show方法')
+                }
+            },
+            beforeCreate(){//遇到的第一个生命周期函数，表示实例完全被创建出来之前，会执行他
+            //在beforeCreate() 生命周期函数执行时 data和methods中的数据都还未被初始化
+                // console.log(this.msg)
+            },
+            created(){//遇到的第二个生命周期函数
+                // 在created() 生命周期函数执行时 data和methods中的数据都已经初始化好了
+                console.log(this.msg)
+            },
+            beforeMount(){//这是遇到的第三个生命周期函数，表示模板已经在内存中编辑完成，但尚未把模板渲染到页面中
+                console.log(document.getElementById('app').innerText)
+            },
+            mounted(){//这时遇到的第四个生命周期函数，表示内存中的模板已经真实的挂载在页面中
+                console.log(document.getElementById('app').innerText)
+            },
+            beforeUpdate () {
+                console.log(document.getElementById('app').innerText)
+            },
+            updated() {
+                console.log(document.getElementById('app').innerText)
+            }
+        });
+    </script>
+</body>

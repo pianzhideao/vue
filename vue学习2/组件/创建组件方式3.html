@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <login></login>
+    </div>
+
+    <!-- 在被控制的#app外面使用template元素，定义组建的html模板结构 -->
+    <template id="temp1">
+        <div>
+            <h2>你好棒！</h2>
+            <h4>你怎么这么好看！</h4>
+        </div>
+    </template>
+    <script>
+        // Vue.component('mycom3',{
+        //     template:'#temp1'
+        // })
+
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{},
+           components:{
+               login:{
+                   template:'#temp1'
+               }
+           }
+        });
+    </script>
+</body>

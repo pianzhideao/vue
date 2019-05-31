@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="firstname">+
+        <input type="text" v-model="lastname">=
+        <input type="text" v-model="fullname">
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                firstname:'',
+                lastname:'',
+            },
+            methods:{
+
+            },
+            computed: {//在这个里面可以定义一些属性，这些属性叫做计算属性（方法），只不过在使用时，是把名称当做属性来使用，并不会把他当成方法来调用
+                'fullname':function(){
+                    return this.firstname + '-' + this.lastname
+                }
+                
+            }
+        });
+    </script>
+</body>
